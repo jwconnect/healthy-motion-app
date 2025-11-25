@@ -1,0 +1,94 @@
+name: healthy_motion_app
+description: 건강한 동작 - 일상에서 쉽게 따라할 수 있는 스트레칭, 자세 교정, 건강 운동 앱
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # 상태관리 & 라우팅 & 의존성 주입
+  get: ^4.6.6
+
+  # 네트워크/API
+  dio: ^5.4.0
+
+  # 영상 플레이어
+  video_player: ^2.8.2
+  chewie: ^1.7.4
+  youtube_player_flutter: ^9.0.1
+
+  # 로컬 저장소
+  shared_preferences: ^2.2.2
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+
+  # Firebase
+  firebase_core: ^2.25.4
+  firebase_auth: ^4.17.4
+  cloud_firestore: ^4.15.4
+  firebase_storage: ^11.6.5
+  firebase_messaging: ^14.7.15
+
+  # UI/UX
+  cached_network_image: ^3.3.1
+  shimmer: ^3.0.0
+  lottie: ^3.1.0
+  flutter_svg: ^2.0.9
+
+  # 차트
+  fl_chart: ^0.66.2
+
+  # 캘린더
+  table_calendar: ^3.0.9
+
+  # 기타
+  intl: ^0.19.0
+  permission_handler: ^11.2.0
+  share_plus: ^7.2.1
+  image_picker: ^1.0.7
+  uuid: ^4.3.3
+
+  # 알림
+  flutter_local_notifications: ^17.0.0
+
+  # Google Sign In
+  google_sign_in: ^6.2.1
+
+  # Apple Sign In
+  sign_in_with_apple: ^6.1.0
+
+  # 화면 꺼짐 방지
+  wakelock_plus: ^1.1.4
+
+  # 이미지 크롭
+  image_cropper: ^5.0.1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+  hive_generator: ^2.0.1
+  build_runner: ^2.4.8
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/animations/
+
+  fonts:
+    - family: Pretendard
+      fonts:
+        - asset: assets/fonts/Pretendard-Regular.otf
+        - asset: assets/fonts/Pretendard-Medium.otf
+          weight: 500
+        - asset: assets/fonts/Pretendard-SemiBold.otf
+          weight: 600
+        - asset: assets/fonts/Pretendard-Bold.otf
+          weight: 700
