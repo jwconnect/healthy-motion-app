@@ -11,6 +11,7 @@ class UserModel {
   final List<String> badges;
   final int followerCount;
   final int followingCount;
+  final bool isGuest;
 
   UserModel({
     required this.id,
@@ -25,6 +26,7 @@ class UserModel {
     this.badges = const [],
     this.followerCount = 0,
     this.followingCount = 0,
+    this.isGuest = false,
   });
 
   factory UserModel.fromJson(Map<String, dynamic> json) {
@@ -46,6 +48,7 @@ class UserModel {
           [],
       followerCount: json['followerCount'] as int? ?? 0,
       followingCount: json['followingCount'] as int? ?? 0,
+      isGuest: json['isGuest'] as bool? ?? false,
     );
   }
 
@@ -63,6 +66,7 @@ class UserModel {
       'badges': badges,
       'followerCount': followerCount,
       'followingCount': followingCount,
+      'isGuest': isGuest,
     };
   }
 
@@ -79,6 +83,7 @@ class UserModel {
     List<String>? badges,
     int? followerCount,
     int? followingCount,
+    bool? isGuest,
   }) {
     return UserModel(
       id: id ?? this.id,
@@ -93,6 +98,7 @@ class UserModel {
       badges: badges ?? this.badges,
       followerCount: followerCount ?? this.followerCount,
       followingCount: followingCount ?? this.followingCount,
+      isGuest: isGuest ?? this.isGuest,
     );
   }
 

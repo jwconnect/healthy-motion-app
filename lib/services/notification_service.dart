@@ -1,12 +1,17 @@
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:get/get.dart';
+import 'package:timezone/timezone.dart' as tz;
+import 'package:timezone/data/latest.dart' as tz;
 
 class NotificationService extends GetxService {
   final FlutterLocalNotificationsPlugin _notifications =
       FlutterLocalNotificationsPlugin();
 
   Future<NotificationService> init() async {
-    const androidSettings = AndroidInitializationSettings('@mipmap/ic_launcher');
+    tz.initializeTimeZones();
+
+    const androidSettings =
+        AndroidInitializationSettings('@mipmap/ic_launcher');
     const iosSettings = DarwinInitializationSettings(
       requestAlertPermission: true,
       requestBadgePermission: true,
@@ -100,8 +105,8 @@ class NotificationService extends GetxService {
     );
   }
 
-  TZDateTime _convertToTZDateTime(DateTime dateTime) {
-    return TZDateTime.from(dateTime, local);
+  tz.TZDateTime _convertToTZDateTime(DateTime dateTime) {
+    return tz.TZDateTime.from(dateTime, tz.local);
   }
 
   Future<void> cancelNotification(int id) async {
@@ -137,34 +142,3 @@ class NotificationService extends GetxService {
     );
   }
 }
-
-class TZDateTime extends DateTime {
-  TZDateTime(super.year, [
-    super.month,
-    super.day,
-    super.hour,
-    super.minute,
-    super.second,
-    super.millisecond,
-    super.microsecond,
-  ]);
-
-  factory TZDateTime.from(DateTime other, Location location) {
-    return TZDateTime(
-      other.year,
-      other.month,
-      other.day,
-      other.hour,
-      other.minute,
-      other.second,
-      other.millisecond,
-      other.microsecond,
-    );
-  }
-}
-
-class Location {
-  const Location();
-}
-
-const local = Location();

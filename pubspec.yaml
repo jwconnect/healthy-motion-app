@@ -1,10 +1,10 @@
 name: healthy_motion_app
 description: 건강한 동작 - 일상에서 쉽게 따라할 수 있는 스트레칭, 자세 교정, 건강 운동 앱
-publish_to: 'none'
+publish_to: "none"
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.2.0 <4.0.0'
+  sdk: ">=3.2.0 <4.0.0"
 
 dependencies:
   flutter:
@@ -27,11 +27,11 @@ dependencies:
   hive_flutter: ^1.1.0
 
   # Firebase
-  firebase_core: ^2.25.4
-  firebase_auth: ^4.17.4
-  cloud_firestore: ^4.15.4
-  firebase_storage: ^11.6.5
-  firebase_messaging: ^14.7.15
+  firebase_core: ^3.8.0
+  firebase_auth: ^5.3.3
+  cloud_firestore: ^5.5.0
+  firebase_storage: ^12.3.6
+  firebase_messaging: ^15.1.6
 
   # UI/UX
   cached_network_image: ^3.3.1
@@ -65,7 +65,7 @@ dependencies:
   wakelock_plus: ^1.1.4
 
   # 이미지 크롭
-  image_cropper: ^5.0.1
+  image_cropper: ^8.0.2
 
 dev_dependencies:
   flutter_test:
@@ -82,13 +82,13 @@ flutter:
     - assets/icons/
     - assets/animations/
 
-  fonts:
-    - family: Pretendard
-      fonts:
-        - asset: assets/fonts/Pretendard-Regular.otf
-        - asset: assets/fonts/Pretendard-Medium.otf
-          weight: 500
-        - asset: assets/fonts/Pretendard-SemiBold.otf
-          weight: 600
-        - asset: assets/fonts/Pretendard-Bold.otf
-          weight: 700
+  # fonts:
+  #   - family: Pretendard
+  #     fonts:
+  #       - asset: assets/fonts/Pretendard-Regular.otf
+  #       - asset: assets/fonts/Pretendard-Medium.otf
+  #         weight: 500
+  #       - asset: assets/fonts/Pretendard-SemiBold.otf
+  #         weight: 600
+  #       - asset: assets/fonts/Pretendard-Bold.otf
+  #         weight: 700

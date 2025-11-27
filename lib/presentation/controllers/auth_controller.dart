@@ -19,6 +19,8 @@ class AuthController extends GetxController {
 
   Rx<UserModel?> currentUser = Rx<UserModel?>(null);
 
+  bool get isGuest => currentUser.value?.isGuest ?? false;
+
   @override
   void onInit() {
     super.onInit();
@@ -164,5 +166,57 @@ class AuthController extends GetxController {
     passwordController.clear();
     confirmPasswordController.clear();
     nicknameController.clear();
+  }
+
+  Future<void> loginAsGuest() async {
+    isLoading.value = true;
+    try {
+      final user = await _authRepository.loginAsGuest();
+      currentUser.value = user;
+      Get.offAllNamed(AppRoutes.main);
+    } catch (e) {
+      Helpers.showSnackBar('게스트 로그인에 실패했습니다', isError: true);
+    } finally {
+      isLoading.value = false;
+    }
+  }
+
+  Future<void> convertGuestToUser() async {
+    final email = emailController.text.trim();
+    final password = passwordController.text;
+    final confirmPassword = confirmPasswordController.text;
+    final nickname = nicknameController.text.trim();
+
+    if (email.isEmpty || password.isEmpty || nickname.isEmpty) {
+      Helpers.showSnackBar('모든 필수 항목을 입력해주세요', isError: true);
+      return;
+    }
+
+    if (password != confirmPassword) {
+      Helpers.showSnackBar('비밀번호가 일치하지 않습니다', isError: true);
+      return;
+    }
+
+    if (password.length < 8) {
+      Helpers.showSnackBar('비밀번호는 8자 이상이어야 합니다', isError: true);
+      return;
+    }
+
+    isLoading.value = true;
+    try {
+      final user = await _authRepository.convertGuestToUser(
+        email: email,
+        password: password,
+        nickname: nickname,
+      );
+      currentUser.value = user;
+      clearControllers();
+      Helpers.showSuccessSnackBar('계정이 생성되었습니다');
+      Get.back();
+    } catch (e) {
+      Helpers.showSnackBar('계정 생성에 실패했습니다: ${e.toString()}', isError: true);
+    } finally {
+      isLoading.value = false;
+    }
   }
 }

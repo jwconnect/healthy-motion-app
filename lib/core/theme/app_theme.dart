@@ -112,7 +112,7 @@ class AppTheme {
         labelStyle: AppTextStyles.bodyMedium,
         errorStyle: AppTextStyles.bodySmall.copyWith(color: AppColors.error),
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: AppColors.surface,
         elevation: AppSizes.cardElevation,
         shape: RoundedRectangleBorder(
@@ -149,7 +149,8 @@ class AppTheme {
       ),
       snackBarTheme: SnackBarThemeData(
         backgroundColor: AppColors.textPrimary,
-        contentTextStyle: AppTextStyles.bodyMedium.copyWith(color: Colors.white),
+        contentTextStyle:
+            AppTextStyles.bodyMedium.copyWith(color: Colors.white),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(AppSizes.radiusMd),
         ),
@@ -234,7 +235,7 @@ class AppTheme {
           color: AppColors.darkTextSecondary,
         ),
       ),
-      cardTheme: CardTheme(
+      cardTheme: CardThemeData(
         color: AppColors.darkSurface,
         elevation: AppSizes.cardElevation,
         shape: RoundedRectangleBorder(

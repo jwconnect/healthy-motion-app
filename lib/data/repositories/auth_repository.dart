@@ -9,6 +9,7 @@ class AuthRepository {
 
   UserModel? get currentUser => _currentUser;
   bool get isLoggedIn => _currentUser != null;
+  bool get isGuest => _currentUser?.isGuest ?? false;
 
   Future<void> init() async {
     final userData = _localStorage.getUser();
@@ -94,5 +95,46 @@ class AuthRepository {
   Future<void> deleteAccount() async {
     await Future.delayed(const Duration(seconds: 1));
     await logout();
+  }
+
+  Future<UserModel> loginAsGuest() async {
+    await Future.delayed(const Duration(milliseconds: 500));
+
+    final user = UserModel(
+      id: 'guest_${DateTime.now().millisecondsSinceEpoch}',
+      email: '',
+      nickname: '게스트',
+      isGuest: true,
+      createdAt: DateTime.now(),
+    );
+
+    _currentUser = user;
+    await _localStorage.setUser(user.toJson());
+
+    return user;
+  }
+
+  Future<UserModel> convertGuestToUser({
+    required String email,
+    required String password,
+    required String nickname,
+  }) async {
+    if (_currentUser == null || !_currentUser!.isGuest) {
+      throw Exception('게스트 계정이 아닙니다');
+    }
+
+    await Future.delayed(const Duration(seconds: 1));
+
+    final user = _currentUser!.copyWith(
+      email: email,
+      nickname: nickname,
+      isGuest: false,
+    );
+
+    _currentUser = user;
+    await _localStorage.setUser(user.toJson());
+    await _localStorage.setAccessToken('demo_token');
+
+    return user;
   }
 }

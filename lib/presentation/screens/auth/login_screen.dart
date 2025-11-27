@@ -91,7 +91,8 @@ class LoginScreen extends GetView<AuthController> {
                 children: [
                   const Expanded(child: Divider()),
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: AppSizes.md),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: AppSizes.md),
                     child: Text(
                       '또는',
                       style: AppTextStyles.caption,
@@ -116,6 +117,19 @@ class LoginScreen extends GetView<AuthController> {
                 textColor: Colors.white,
               ),
               const SizedBox(height: AppSizes.xl),
+              // 게스트 로그인
+              Obx(() => TextButton(
+                    onPressed: controller.isLoading.value
+                        ? null
+                        : controller.loginAsGuest,
+                    child: Text(
+                      '로그인 없이 둘러보기',
+                      style: AppTextStyles.labelLarge.copyWith(
+                        color: AppColors.textSecondary,
+                      ),
+                    ),
+                  )),
+              const SizedBox(height: AppSizes.md),
               // 회원가입 링크
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
